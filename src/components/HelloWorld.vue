@@ -80,50 +80,126 @@
           </a>
         </v-layout>
       </v-flex>
-      <v-row align="center">
-        <v-col class="text-center" cols="12" sm="4">
-          <div class="my-2">
-            <v-btn small>Normal</v-btn>
-          </div>
-          <div class="my-2">
-            <v-btn small color="primary">Primary</v-btn>
-          </div>
-          <div class="my-2">
-            <v-btn small color="error">Error</v-btn>
-          </div>
-          <div class="my-2">
-            <v-btn small disabled>Disabled</v-btn>
-          </div>
+      
+      <v-flex
+        xs12
+        mb-5
+      >
+        <v-col class="text-center">
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">Title</th>
+                  <th class="text-left">Description</th>
+                  <th class="text-center">Code</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in desserts" :key="item.name">
+                  <td class="text-left">{{ item.name }}</td>
+                  <td class="text-left">{{ item.calories }}</td>
+                  <td class="text-center"><code>hello world</code></td>
+                  <td class="text-center">
+                    <v-dialog
+                      v-model="dialog"
+                      width="500"
+                    >
+                      <template v-slot:activator="{ on }">
+                        <v-btn
+                          color="red lighten-2"
+                          dark
+                          v-on="on"
+                        >
+                          Click Me
+                        </v-btn>
+                      </template>
+
+                      <v-card>
+                        <v-card-title
+                          class="headline grey lighten-2"
+                          primary-title
+                        >
+                          Privacy Policy
+                        </v-card-title>
+
+                        <v-card-text>
+                          <code>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                          </code>
+                        </v-card-text>
+
+                        <v-divider></v-divider>
+
+                        <v-card-actions>
+                          <v-spacer></v-spacer>
+                          <v-btn
+                            color="primary"
+                            text
+                            @click="dialog = false"
+                          >
+                            I accept
+                          </v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </v-dialog>
+                  </td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
         </v-col>
-        <v-col class="text-center" cols="12" sm="4">
-          <div class="my-2">
-            <v-btn>Normal</v-btn>
-          </div>
-          <div class="my-2">
-            <v-btn color="primary">Primary</v-btn>
-          </div>
-          <div class="my-2">
-            <v-btn color="error">Error</v-btn>
-          </div>
-          <div class="my-2">
-            <v-btn disabled>Disabled</v-btn>
-          </div>
-        </v-col>
-        <v-col class="text-center" cols="12" sm="4">
-          <div class="my-2">
-            <v-btn large>Normal</v-btn>
-          </div>
-          <div class="my-2">
-            <v-btn large color="primary">Primary</v-btn>
-          </div>
-          <div class="my-2">
-            <v-btn large color="error">Error</v-btn>
-          </div>
-          <div class="my-2">
-            <v-btn large disabled>Disabled</v-btn>
-          </div>
-        </v-col>
-      </v-row>
+      </v-flex>
+      <v-flex
+        xs12
+        mb-5
+      >
+        <v-row align="center">
+          <v-col class="text-center" cols="12" sm="4">
+            <div class="my-2">
+              <v-btn small>Normal</v-btn>
+            </div>
+            <div class="my-2">
+              <v-btn small color="primary">Primary</v-btn>
+            </div>
+            <div class="my-2">
+              <v-btn small color="error">Error</v-btn>
+            </div>
+            <div class="my-2">
+              <v-btn small disabled>Disabled</v-btn>
+            </div>
+          </v-col>
+          <v-col class="text-center" cols="12" sm="4">
+            <div class="my-2">
+              <v-btn>Normal</v-btn>
+            </div>
+            <div class="my-2">
+              <v-btn color="primary">Primary</v-btn>
+            </div>
+            <div class="my-2">
+              <v-btn color="error">Error</v-btn>
+            </div>
+            <div class="my-2">
+              <v-btn disabled>Disabled</v-btn>
+            </div>
+          </v-col>
+          <v-col class="text-center" cols="12" sm="4">
+            <div class="my-2">
+              <v-btn large>Normal</v-btn>
+            </div>
+            <div class="my-2">
+              <v-btn large color="primary">Primary</v-btn>
+            </div>
+            <div class="my-2">
+              <v-btn large color="error">Error</v-btn>
+            </div>
+            <div class="my-2">
+              <v-btn large disabled>Disabled</v-btn>
+            </div>
+          </v-col>
+        </v-row>
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -131,6 +207,49 @@
 <script>
 export default {
   data: () => ({
+    dialog: false,
+    desserts: [
+      {
+        name: 'Frozen Yogurt',
+        calories: 159,
+      },
+      {
+        name: 'Ice cream sandwich',
+        calories: 237,
+      },
+      {
+        name: 'Eclair',
+        calories: 262,
+      },
+      {
+        name: 'Cupcake',
+        calories: 305,
+      },
+      {
+        name: 'Gingerbread',
+        calories: 356,
+      },
+      {
+        name: 'Jelly bean',
+        calories: 375,
+      },
+      {
+        name: 'Lollipop',
+        calories: 392,
+      },
+      {
+        name: 'Honeycomb',
+        calories: 408,
+      },
+      {
+        name: 'Donut',
+        calories: 452,
+      },
+      {
+        name: 'KitKat',
+        calories: 518,
+      },
+    ],
     ecosystem: [
       {
         text: 'vuetify-loader',
